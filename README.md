@@ -91,6 +91,22 @@ Claude Code hooks call small PowerShell scripts:
 
 Reminders are hidden background PowerShell loops, one per kind and session, tracked by a marker file in `%USERPROFILE%\.claude\edge-lighting\state`. Deleting the marker stops the loop. Everything the hooks launch is detached, so hooks return immediately and never slow Claude down.
 
+## GitHub Copilot CLI
+
+The same scripts work with GitHub Copilot CLI, which has a similar hook system. From a clone of this repo:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File copilot\install.ps1
+```
+
+This writes `~/.copilot/hooks/edge-lighting.json` (every repo, honours `COPILOT_HOME`) pointing at the scripts in your clone, so keep the folder where it is. Restart Copilot CLI. Remove with `copilot\install.ps1 -Uninstall`. Settings are shared with the Claude Code plugin (`%USERPROFILE%\.claude\edge-lighting\config.json`).
+
+- Green glow when the agent stops, amber glow + repeating reminder on permission prompts and elicitation dialogs, reminders cleared when you reply or a tool runs.
+- The popup title uses the folder name (Copilot does not expose a session title).
+- Not wired up: the idle reminder (Copilot's `agent_idle` event is not mapped yet).
+- Written from GitHub's hooks reference and tested with simulated payloads only, not yet in a live Copilot CLI session. Reports welcome.
+- If you use both tools, Copilot also reads `.claude/settings.json` hooks, so do not install both ways in the same repo or you may get duplicates.
+
 ## Limitations
 
 - Windows only.

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "hooks": {
+    "Stop": [
+      { "type": "command", "exec": "powershell", "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "__SCRIPTS__/notify.ps1", "-Title", "Copilot CLI", "-Message", "Task done"] }
+    ],
+    "notification": [
+      { "type": "command", "matcher": "permission_prompt|elicitation_dialog", "exec": "powershell", "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "__SCRIPTS__/notify.ps1", "-Title", "Copilot CLI", "-Message", "Needs your input", "-Color", "#F59E0B"] }
+    ],
+    "UserPromptSubmit": [
+      { "type": "command", "exec": "powershell", "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "__SCRIPTS__/clear-reminders.ps1"] }
+    ],
+    "PostToolUse": [
+      { "type": "command", "exec": "cmd", "args": ["/d", "/c", "__SCRIPTS__/clear-permission.cmd"], "timeoutSec": 10 }
+    ]
+  }
+}

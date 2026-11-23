@@ -82,6 +82,11 @@ function Read-HookPayload {
     if ($raw -and $raw.Trim()) {
         try { $payload = $raw.TrimStart([char]0xFEFF) | ConvertFrom-Json -ErrorAction Stop } catch { $payload = $null }
     }
+    # GitHub Copilot CLI sends camelCase ids on some events (sessionId, transcriptPath); normalise to Claude's names.
+    if ($payload) {
+        if (-not $payload.session_id -and $payload.sessionId) { $payload | Add-Member -NotePropertyName session_id -NotePropertyValue ([string]$payload.sessionId) -Force }
+        if (-not $payload.transcript_path -and $payload.transcriptPath) { $payload | Add-Member -NotePropertyName transcript_path -NotePropertyValue ([string]$payload.transcriptPath) -Force }
+    }
     if ($payload) { Write-HookLog @{ payload = $payload } } else { Write-HookLog @{ raw = $raw } }
     return $payload
 }
