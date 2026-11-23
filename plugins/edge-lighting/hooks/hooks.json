@@ -1,0 +1,50 @@
+{
+  "description": "Edge-lighting notifications: screen-edge glow, corner cards and reminders for Claude Code",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1", "-Title", "Claude Code", "-Message", "Task done"]
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PLUGIN_ROOT}/scripts/notify.ps1", "-Title", "Claude Code", "-Message", "Needs your input", "-Color", "#F59E0B"]
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell",
+            "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "${CLAUDE_PLUGIN_ROOT}/scripts/clear-reminders.ps1"]
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cmd",
+            "args": ["/d", "/c", "${CLAUDE_PLUGIN_ROOT}/scripts/clear-permission.cmd"],
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

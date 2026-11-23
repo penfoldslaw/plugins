@@ -1,0 +1,10 @@
+{
+  "log": false,
+  "edgeFlash": true,
+  "cornerCard": true,
+  "toast": true,
+  "colors": { "done": "#22C55E", "permission": "#F59E0B", "idle": "#9CA3AF" },
+  "idle": { "mode": "popup", "intervalMinutes": 30, "maxHours": 4 },
+  "permission": { "intervalMinutes": 2, "maxHours": 1, "repeatPulses": 2 },
+  "card": { "holdSeconds": 6 }
+}

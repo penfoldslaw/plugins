@@ -1,0 +1,15 @@
+{
+  "name": "edge-lighting",
+  "version": "1.0.0",
+  "description": "Samsung-style edge lighting for Claude Code on Windows: a glowing border and a popup card on every monitor when Claude finishes or needs permission, plus gentle reminders when it is waiting for you.",
+  "keywords": [
+    "notifications",
+    "windows",
+    "hooks",
+    "edge-lighting"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Andy Amoah Mensah"
+  }
+}

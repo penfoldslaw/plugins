@@ -1,0 +1,14 @@
+{
+  "name": "claude-edge-lighting",
+  "owner": {
+    "name": "Andy Amoah Mensah"
+  },
+  "plugins": [
+    {
+      "name": "edge-lighting",
+      "source": "./plugins/edge-lighting",
+      "description": "Edge lighting, corner cards and reminders for Claude Code on Windows (all monitors, never steals focus)."
+    }
+  ],
+  "description": "Edge lighting for Claude Code on Windows: glowing screen borders, corner cards and reminders on every monitor."
+}

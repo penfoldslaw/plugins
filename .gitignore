@@ -1,0 +1,7 @@
+# Local runtime data (the plugin keeps these in ~/.claude/edge-lighting, but just in case)
+hook-log.jsonl
+state/
+config.json
+*.bak
+*.png
+!docs/*.png
